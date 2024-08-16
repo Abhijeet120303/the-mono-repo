@@ -32,7 +32,7 @@ jobs:
           cd hospital-management/$dir;
           echo "Working in directory: $dir"
           mvn com.spotify.fmt:fmt-maven-plugin:check          
-          cd ..;
+          cd -;
         done
       
     - name: Go Inside of Hospital Management/api-gateway
