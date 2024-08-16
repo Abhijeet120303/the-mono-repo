@@ -5,27 +5,37 @@ on:
     branches:
       - main
 
+env: 
+  DIRS: "api-gateway patient-service directory-service case-service appointment-service"
+
 jobs:
   pre-commit-scans:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Setup java
+    - name: Setup Java
       uses: actions/setup-java@v4
       with:
-         distribution: 'temurin' 
-         java-version: '21'
+        distribution: 'temurin' 
+        java-version: '21'
 
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: check code
+    - name: Check code directory contents
       run: ls -ltr
-
-    - name: Go Inside of Hospiatl management/api-gateway
-      run: |
-       cd hospital-management
-       cd api-gateway
-       mvn com.spotify.fmt:fmt-maven-plugin:check
       
-  
+    - name: Perform Google Formatter Check
+      run: |
+        for dir in ${{ env.DIRS }};
+        do
+          cd hospital-management-mono-repo/$dir;
+          echo "Working in directory: $dir"
+          mvn com.spotify.fmt:fmt-maven-plugin:check          
+          cd -;
+        done
+      
+    - name: Go Inside of Hospital Management/api-gateway
+      run: |
+        cd hospital-management/api-gateway
+        mvn com.spotify.fmt:fmt-maven-plugin:check
