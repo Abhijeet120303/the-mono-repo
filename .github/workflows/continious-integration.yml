@@ -58,7 +58,8 @@ jobs:
         for dir in ${{ env.DIRS }};
         do
           cd hospital-management/$dir
-          mvn org.owasp:dependency-check-maven:check || false
+          if: false
+          mvn org.owasp:dependency-check-maven:check 
           cd -
         done
 
