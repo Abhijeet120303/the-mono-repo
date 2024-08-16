@@ -31,6 +31,7 @@ jobs:
           docker pull abhijeetnirphal/license-finder:latest
           echo "Scanning directory: $(pwd)"
           ls -ltr
+          mvn clean
           docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
         done
