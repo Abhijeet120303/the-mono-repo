@@ -60,6 +60,7 @@ jobs:
           cd hospital-management/$dir
           if [ false = true ]; 
             mvn org.owasp:dependency-check-maven:check
+          fi
           cd -
         done
 
