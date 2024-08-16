@@ -30,12 +30,17 @@ jobs:
         for dir in ${{ env.DIRS }};
         do
           cd hospital-management/$dir;
-          echo "Working in directory: $dir"
           mvn com.spotify.fmt:fmt-maven-plugin:check          
           cd -;
         done
-      
-    - name: Go Inside of Hospital Management/api-gateway
+
+    - name: OSS scan
       run: |
-        cd hospital-management/api-gateway
-        mvn com.spotify.fmt:fmt-maven-plugin:check
+        for dir in ${{ env.DIRS }};
+        do
+          cd hospital-management/$dir;
+          mvn ossindex:audit         
+          cd -;
+        done
+      
+   
