@@ -28,7 +28,7 @@ jobs:
         do
           cd hospital-management/$dir
           docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$dir:/scan" abhijeetnirphal/license-finder:latest
+          docker run -v "$(pwd)/hospital-management/$dir:/scan" abhijeetnirphal/license-finder:latest
           cd -
         done
 
