@@ -15,6 +15,8 @@
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
+		<image.registry>dnyanyog.org</image.registry>
+		<image.tag>latest</image.tag>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -112,7 +114,7 @@
 				<configuration>
 					<images>
 						<image>
-							<name>dnyanyog.org/${project.artifactId}:latest</name>
+							<name>${image.registry}/${project.artifactId}:${image.tag}</name>
 							<build>
 								<dockerFile>${project.basedir}/dockerfile</dockerFile>
 								<args>
@@ -123,6 +125,25 @@
 					</images>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.ossindex.maven</groupId>
+				<artifactId>ossindex-maven-plugin</artifactId>
+				<configuration>
+					<reportFile>${project.build.directory}/audit-report.json</reportFile>
+					<!--fail>true</fail-->
+				</configuration>
+				<executions>
+					<execution>
+						<id>audit-dependencies</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>audit</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 	
 
 		</plugins>
