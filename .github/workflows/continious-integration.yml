@@ -40,8 +40,8 @@ jobs:
         for dir in ${{ env.DIRS }}
         do
           cd hospital-management/$dir
-          docker pull abhijeetnirphal/license-finder
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder
+          docker pull abhijeetnirphal/license-finder:latest
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
           cd -
         done
 
