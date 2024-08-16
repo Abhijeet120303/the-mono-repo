@@ -14,11 +14,10 @@ jobs:
 
     steps:
     - name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-
+      run: |
+        docker pull abhijeetnirphal/openjdk-24-jdk-slim
+        java --version
+        
     - name: Checkout code
       uses: actions/checkout@v4
 
