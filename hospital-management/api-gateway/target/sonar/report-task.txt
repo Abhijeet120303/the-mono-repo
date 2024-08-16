@@ -1,0 +1,6 @@
+projectKey=api-gateway
+serverUrl=http://localhost:9000
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9000/dashboard?id=api-gateway
+ceTaskId=381ba8ea-284a-4f85-897a-68612b0b6be2
+ceTaskUrl=http://localhost:9000/api/ce/task?id=381ba8ea-284a-4f85-897a-68612b0b6be2
