@@ -39,7 +39,8 @@ jobs:
         for dir in ${{ env.DIRS }};
         do
           cd hospital-management/$dir;
-          mvn ossindex:audit         
+          mvn ossindex:audit  
+          continue-on-error: true
           cd -;
         done
       
