@@ -133,7 +133,6 @@
 				<executions>
 					<execution>
 						<id>audit-dependencies</id>
-						<phase>validate</phase>
 						<goals>
 							<goal>audit</goal>
 						</goals>
