@@ -29,7 +29,7 @@ jobs:
         do
           cd hospital-management/$dir
           docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
+          docker run -v "$(dir):/scan" abhijeetnirphal/license-finder:latest 
           cd -
         done
 
@@ -39,7 +39,7 @@ jobs:
         do
           cd hospital-management/$dir
           docker pull abhijeetnirphal/gitleaks
-          docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks
+          docker run -v "$(dir):/path" abhijeetnirphal/gitleaks
           cd -
         done
 
