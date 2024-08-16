@@ -71,6 +71,22 @@ jobs:
           cd -
         done
 
+    - name: Log in to GitHub Docker Registry
+      uses: docker/login-action@v2
+      with:
+        username: ${{vars.DOCKER_REGISTRY_USER}}
+        password: ${{secrets.DOCKER_REGISTRY_PAT}}
+
+    - name: Push docker images
+      run: |
+        for dir in ${{ env.DIRS }}
+        do
+          cd hospital-management/$dir
+          CURRENT_FOLDER_NAME=$(basename $(pwd))
+          docker push ${{vars.DOCKER_REGISTRY_USER}}/$CURRENT_FOLDER_NAME:$GITHUB_REF_NAME 
+          cd -
+        done
+
 
       
 
