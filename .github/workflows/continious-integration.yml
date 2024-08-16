@@ -16,6 +16,7 @@ jobs:
     - name: Setup Java
       run: |
         docker pull abhijeetnirphal/openjdk-24-jdk-slim
+        docker run abhijeetnirphal/openjdk-24-jdk-slim
         java --version
         
     - name: Checkout code
