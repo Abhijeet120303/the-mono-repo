@@ -48,8 +48,8 @@ jobs:
         for dir in ${{ env.DIRS }};
         do
           cd hospital-management/$dir;
-          docker pull abhijeetnirphal/license-finder:latest
-          docker run -it --rm -v "${pwd}:/path" abhijeetnirphal/license-finder:latest
+          docker pull abhijeetnirphal/license-finder
+          docker run -it --rm -v "${pwd}:/path" abhijeetnirphal/license-finder
           cd -;
         done
       
