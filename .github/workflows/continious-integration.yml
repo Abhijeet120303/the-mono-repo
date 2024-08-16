@@ -35,17 +35,6 @@ jobs:
           cd -
         done
 
-    - name: License finder
-      run: |
-        for dir in ${{ env.DIRS }}
-        do
-          cd hospital-management/$dir
-          docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
-          cd -
-        done
-
-
     - name: Perform Google Formatter Check
       run: |
         for dir in ${{ env.DIRS }};
@@ -63,6 +52,18 @@ jobs:
           mvn ossindex:audit || true
           cd -
         done
+
+    - name: OWASP scan
+      run: |
+        for dir in ${{ env.DIRS }};
+        do
+          cd hospital-management/$dir
+          mvn org.owasp:dependency-check-maven:check || false
+          cd -
+        done
+
+      
+
 
     
 
