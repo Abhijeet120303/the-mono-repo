@@ -11,46 +11,46 @@ env:
 jobs:
   pre-commit-scans:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        distribution: 'temurin' 
+        distribution: 'temurin'
         java-version: '21'
 
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Check code directory contents
       run: ls -ltr
-      
+
+    - name: GitLeaks Scan
+      run: |
+        for dir in ${{ env.DIRS }}
+        do
+          cd hospital-management/$dir
+          docker pull abhijeetnirphal/license-finder
+          docker run -v "$(pwd):/path" abhijeetnirphal/license-finder
+          cd -
+        done
+
     - name: Perform Google Formatter Check
       run: |
         for dir in ${{ env.DIRS }};
         do
-          cd hospital-management/$dir;
-          mvn com.spotify.fmt:fmt-maven-plugin:check          
-          cd -;
+          cd hospital-management/$dir
+          mvn com.spotify.fmt:fmt-maven-plugin:check
+          cd -
         done
 
     - name: OSS scan
       run: |
         for dir in ${{ env.DIRS }};
         do
-          cd hospital-management/$dir;
+          cd hospital-management/$dir
           mvn ossindex:audit || true
-          cd -;
+          cd -
         done
 
-    - name: GitLeaks Scan
-      run: |
-        for dir in ${{ env.DIRS }};
-        do
-          cd hospital-management/$dir;
-          docker pull abhijeetnirphal/license-finder
-          docker run -v "${pwd}:/path" abhijeetnirphal/license-finder
-          cd -;
-        done
-      
-   
+    
