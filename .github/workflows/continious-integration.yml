@@ -62,6 +62,15 @@ jobs:
           cd -
         done
 
+    - name: Build code and create docker images
+      run: |
+        for dir in ${{ env.DIRS }}
+        do
+          cd hospital-management/$dir
+          mvn clean install docker:build -Dimage.registry=${{vars.DOCKER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
+          cd -
+        done
+
 
       
 
