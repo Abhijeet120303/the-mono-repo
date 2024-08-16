@@ -22,11 +22,10 @@ jobs:
     - name: check code
       run: ls -ltr
 
-    - name: Go Inside of Hospiatl management
-      run: cd hospital-management
-      
-    - name: Go Inside of api-gateway
-      run: cd api-gateway
+    - name: Go Inside of Hospiatl management/api-gateway
+      run: |
+       cd hospital-management
+        cd api-gateway
       
     - name: Perform google formatter check
       run: mvn com.spotify.fmt:fmt-maven-plugin:check
