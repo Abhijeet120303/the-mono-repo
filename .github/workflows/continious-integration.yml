@@ -59,7 +59,7 @@ jobs:
         do
           cd hospital-management/$dir
           docker pull abhijeetnirphal/license-finder
-          docker run -it --rm -v "$(pwd):/scan" abhijeetnirphal/license-finder
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder
           cd -
         done
 
