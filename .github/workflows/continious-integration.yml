@@ -29,10 +29,11 @@ jobs:
       run: |
         for dir in ${{ env.DIRS }};
         do
-          cd hospital-management-mono-repo/$dir;
+          cd hospital-management-mono-repo;
+          cd $dir;
           echo "Working in directory: $dir"
           mvn com.spotify.fmt:fmt-maven-plugin:check          
-          cd -;
+          cd ..;
         done
       
     - name: Go Inside of Hospital Management/api-gateway
