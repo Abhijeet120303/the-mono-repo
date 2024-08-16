@@ -42,5 +42,15 @@ jobs:
           mvn ossindex:audit || true
           cd -;
         done
+
+    - name: GitLeaks Scan
+      run: |
+        for dir in ${{ env.DIRS }};
+        do
+          cd hospital-management/$dir;
+          docker pull abhijeetnirphal/license-finder:latest
+          docker run -it --rm -v "${pwd}:/path" abhijeetnirphal/license-finder:latest
+          cd -;
+        done
       
    
