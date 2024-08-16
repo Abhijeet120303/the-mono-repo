@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  build-licance-finder-image:
+  build-licanse-finder-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
           
 
       - name: docker push
-        run: docker push  ${{vars.DOCKER_REGISTRY_USER}}/licence-finder:latest
+        run: docker push  ${{vars.DOCKER_REGISTRY_USER}}/license-finder:latest
 
 
   build-gitleaks-image:
