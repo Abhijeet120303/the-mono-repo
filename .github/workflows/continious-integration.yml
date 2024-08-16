@@ -25,7 +25,8 @@ jobs:
 
     - name: License finder
       run: |
-        for dir in $(DIRS);
+        for dir in ${{env.DIRS}}
+        do
           cd hospital-management/$dir
           docker pull abhijeetnirphal/license-finder:latest
           docker run -v "$dir:/scan" abhijeetnirphal/license-finder:latest 
