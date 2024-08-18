@@ -34,8 +34,11 @@ jobs:
         echo "Pulling the GitLeaks Docker image..."
         docker pull abhijeetnirphal/gitleaks
         
+        echo "Fetching all commits..."
+        git fetch --unshallow
+        
         echo "Running GitLeaks scan on the entire repository..."
-        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path --log-opts all
+        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path
 
 
     - name: License finder
