@@ -6,7 +6,7 @@ on:
       - main
 
 env: 
-  DIRS: "api-gateway directory-service  patient-service case-service appointment-service"
+  DIRS: "directory-service  patient-service case-service appointment-service"
 
 jobs:
   pre-commit-scans:
@@ -35,16 +35,12 @@ jobs:
       run: |
         for dir in ${{env.DIRS}}
         do
-          if [ "$dir" != "api-gateway" ]; then
             cd hospital-management/$dir
             pwd
             ls -ltr 
             docker pull abhijeetnirphal/license-finder:latest
             docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest || true
             cd -
-          else
-            echo "Skipping License Finder for $dir"
-          fi
         done
         
     - name: Run Unit Tests
