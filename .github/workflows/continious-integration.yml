@@ -22,6 +22,26 @@ jobs:
         
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: GitLeaks Scan
+      run: |
+        for dir in ${{ env.DIRS }}
+        do
+          cd $dir
+          docker pull abhijeetnirphal/gitleaks
+          docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks
+          cd -
+        done
+
+    - name: License finder
+      run: |
+        for dir in ${{env.DIRS}}
+        do
+          cd hospital-management/$dir
+          docker pull abhijeetnirphal/license-finder:latest
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
+          cd -
+        done
       
 
     - name: Perform Google Formatter Check
