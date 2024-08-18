@@ -30,14 +30,13 @@ jobs:
         
         echo "Listing contents of the current directory:"
         ls -ltr
-
-        cd hospital-management
         
         echo "Pulling the GitLeaks Docker image..."
         docker pull abhijeetnirphal/gitleaks
         
-        echo "Running GitLeaks scan..."
-        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path
+        echo "Running GitLeaks scan on the entire repository..."
+        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path --log-opts all
+
 
     - name: License finder
       run: |
