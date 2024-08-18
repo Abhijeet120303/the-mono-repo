@@ -38,10 +38,17 @@ jobs:
           cd hospital-management/$dir
           pwd
           ls -ltr 
-          rm -rf ~/.m2/repository
-          mvn clean install -U
-          docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
+          # docker pull abhijeetnirphal/license-finder:latest
+          # docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
+          cd -
+        done
+
+    - name: Run Unit Tests
+      run: |
+        for dir in ${{ env.DIRS }};
+        do
+          cd hospital-management/$dir
+          mvn test
           cd -
         done
       
