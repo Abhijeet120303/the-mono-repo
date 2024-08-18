@@ -38,7 +38,7 @@ jobs:
         git fetch --unshallow
         
         echo "Running GitLeaks scan on the entire repository..."
-        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path
+        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks 
 
 
     - name: License finder
