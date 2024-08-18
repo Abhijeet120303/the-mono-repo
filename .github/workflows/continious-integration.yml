@@ -6,7 +6,7 @@ on:
       - main
 
 env: 
-  DIRS: "api-gateway patient-service directory-service case-service appointment-service"
+  DIRS: "patient-service directory-service case-service appointment-service"
 
 jobs:
   pre-commit-scans:
@@ -38,8 +38,8 @@ jobs:
           cd hospital-management/$dir
           pwd
           ls -ltr 
-          # docker pull abhijeetnirphal/license-finder:latest
-          # docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
+          docker pull abhijeetnirphal/license-finder:latest
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
         done
 
