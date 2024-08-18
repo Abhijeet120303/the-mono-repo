@@ -25,6 +25,13 @@
 			<artifactId>spring-cloud-starter-gateway</artifactId>
 			<version>2023.0.2</version> <!-- Updated to the latest stable version -->
 		</dependency>
+		<dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-resolver-dns-native-macos</artifactId>
+		    <version>4.1.111.Final</version>
+		    <classifier>osx-x86_64</classifier>
+		    <scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
