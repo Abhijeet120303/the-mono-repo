@@ -35,13 +35,14 @@ jobs:
       run: |
         for dir in ${{env.DIRS}}
         do
-            cd hospital-management/$dir
-            pwd
-            ls -ltr 
-            docker pull abhijeetnirphal/license-finder:latest
-            docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest || true
-            cd -
+          cd hospital-management/$dir
+          pwd
+          ls -ltr 
+          docker pull abhijeetnirphal/license-finder:latest
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest || true
+          cd -
         done
+
         
 
     - name: Run Unit Tests
