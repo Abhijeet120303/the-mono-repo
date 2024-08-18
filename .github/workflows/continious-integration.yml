@@ -51,6 +51,8 @@ jobs:
           mvn test
           cd -
         done
+      env:
+        CI: true  
       
     - name: Perform Google Formatter Check
       run: |
