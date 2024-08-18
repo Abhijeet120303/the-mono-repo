@@ -25,11 +25,17 @@ jobs:
 
     - name: GitLeaks Scan
       run: |
-        echo "$pwd"
-        echo "dir"
+        echo "Current working directory:"
+        pwd
+        
+        echo "Listing contents of the current directory:"
         ls -ltr
+        
+        echo "Pulling the GitLeaks Docker image..."
         docker pull abhijeetnirphal/gitleaks
-        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks
+        
+        echo "Running GitLeaks scan..."
+        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path
 
     - name: License finder
       run: |
