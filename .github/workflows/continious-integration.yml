@@ -35,7 +35,7 @@ jobs:
       run: |
         for dir in ${{env.DIRS}}
         do
-          if [ "$dir" != "api-gateway" ]; 
+          if [ "$dir" != "api-gateway" ]; then
             cd hospital-management/$dir
             pwd
             ls -ltr 
