@@ -25,27 +25,19 @@ jobs:
 
     - name: GitLeaks Scan
       run: |
-        echo "Current working directory:"
         pwd
-        
-        echo "Listing contents of the current directory:"
         ls -ltr
-        
-        echo "Pulling the GitLeaks Docker image..."
         docker pull abhijeetnirphal/gitleaks
-        
-        echo "Fetching all commits..."
         git fetch --unshallow
-        
-        echo "Running GitLeaks scan on the entire repository..."
         docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks 
-
-
+        
     - name: License finder
       run: |
         for dir in ${{env.DIRS}}
         do
           cd hospital-management/$dir
+          pwd
+          ls -ltr
           docker pull abhijeetnirphal/license-finder:latest
           docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
