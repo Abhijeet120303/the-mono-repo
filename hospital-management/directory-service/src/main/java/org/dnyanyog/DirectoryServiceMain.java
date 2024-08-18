@@ -8,11 +8,6 @@ public class DirectoryServiceMain {
 
   public static void main(String[] args) {
 
-    SpringApplication.run(DirectoryServiceMain.class, args)
-      
-      
-      
-      
-      ;
+    SpringApplication.run(DirectoryServiceMain.class, args);
   }
 }
