@@ -2,8 +2,8 @@ name: CI/CD Workflow
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - hospital-management/**
 
 env: 
   DIRS: "api-gateway directory-service  patient-service case-service appointment-service"
