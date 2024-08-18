@@ -27,11 +27,12 @@ jobs:
       run: |
         for dir in ${{ env.DIRS }}
         do
-          cd $dir
+          cd hospital-management/$dir
           docker pull abhijeetnirphal/gitleaks
-          docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks detect --source /path
+          docker run -v "$(pwd):/path" -w /path abhijeetnirphal/gitleaks
           cd -
         done
+      working-directory: ${{ github.workspace }}
 
     - name: License finder
       run: |
