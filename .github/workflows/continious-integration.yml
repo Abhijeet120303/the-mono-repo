@@ -37,7 +37,9 @@ jobs:
         do
           cd hospital-management/$dir
           pwd
-          ls -ltr    
+          ls -ltr 
+          rm -rf ~/.m2/repository
+          mvn clean install -U
           docker pull abhijeetnirphal/license-finder:latest
           docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
