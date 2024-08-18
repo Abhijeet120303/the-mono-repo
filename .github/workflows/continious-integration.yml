@@ -39,7 +39,7 @@ jobs:
           pwd
           ls -ltr    
           docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest license_finder
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
         done
       
