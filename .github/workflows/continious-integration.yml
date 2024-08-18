@@ -40,7 +40,7 @@ jobs:
           ls -ltr
           
           # Install Maven dependencies
-          mvn clean install -f pom.xml
+          mvn clean install -f hospital-management/$dir/pom.xml
           
           docker pull abhijeetnirphal/license-finder:latest
           docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
