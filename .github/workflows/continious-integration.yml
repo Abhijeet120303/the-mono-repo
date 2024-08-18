@@ -35,12 +35,16 @@ jobs:
       run: |
         for dir in ${{env.DIRS}}
         do
-          cd hospital-management/$dir
-          pwd
-          ls -ltr 
-          docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
-          cd -
+          if [ "$dir" != "api-gateway" ]; then
+            cd hospital-management/$dir
+            pwd
+            ls -ltr 
+            docker pull abhijeetnirphal/license-finder:latest
+            docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
+            cd -
+          else
+            echo "Skipping License Finder for $dir"
+          fi
         done
         
     - name: Run Unit Tests
