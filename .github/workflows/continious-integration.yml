@@ -38,6 +38,10 @@ jobs:
           cd hospital-management/$dir
           pwd
           ls -ltr
+          
+          # Install Maven dependencies
+          mvn clean install -f pom.xml
+          
           docker pull abhijeetnirphal/license-finder:latest
           docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
