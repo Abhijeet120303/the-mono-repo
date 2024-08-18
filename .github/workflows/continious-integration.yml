@@ -6,7 +6,7 @@ on:
       - main
 
 env: 
-  DIRS: "api-gateway patient-service directory-service case-service appointment-service"
+  DIRS: "api-gateway directory-service  patient-service case-service appointment-service"
 
 jobs:
   pre-commit-scans:
