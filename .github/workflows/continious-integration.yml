@@ -37,17 +37,12 @@ jobs:
         do
           cd hospital-management/$dir
           pwd
-          ls -ltr
-          
-          # Install Maven dependencies
-          mvn clean install -f hospital-management/$dir/pom.xml
-          
+          ls -ltr    
           docker pull abhijeetnirphal/license-finder:latest
           docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest 
           cd -
         done
       
-
     - name: Perform Google Formatter Check
       run: |
         for dir in ${{ env.DIRS }};
