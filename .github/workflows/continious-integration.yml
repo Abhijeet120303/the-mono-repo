@@ -31,18 +31,6 @@ jobs:
         git fetch --unshallow
         docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks 
         
-    - name: License finder
-      run: |
-        for dir in ${{env.DIRS}}
-        do
-          cd hospital-management/$dir
-          pwd
-          ls -ltr 
-          docker pull abhijeetnirphal/license-finder:latest
-          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest || true
-          cd -
-        done
-
     - name: Run Unit Tests
       run: |
         for dir in ${{ env.DIRS }};
@@ -89,6 +77,19 @@ jobs:
           mvn clean install docker:build -Dimage.registry=${{vars.DOCKER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
           cd -
         done
+
+    - name: License finder
+      run: |
+        for dir in ${{env.DIRS}}
+        do
+          cd hospital-management/$dir
+          pwd
+          ls -ltr 
+          docker pull abhijeetnirphal/license-finder:latest
+          docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest || true
+          cd -
+        done
+
 
     - name: Log in to GitHub Docker Registry
       uses: docker/login-action@v2
