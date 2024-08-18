@@ -30,6 +30,8 @@ jobs:
         
         echo "Listing contents of the current directory:"
         ls -ltr
+
+        cd hospital-management
         
         echo "Pulling the GitLeaks Docker image..."
         docker pull abhijeetnirphal/gitleaks
