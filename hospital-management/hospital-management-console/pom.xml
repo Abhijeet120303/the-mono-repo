@@ -13,7 +13,7 @@
 		<image.registry>dnyanyog.org</image.registry>
 		<image.tag>latest</image.tag>
 	</properties>
-	<dependencies>
+	<dependencies> 
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
