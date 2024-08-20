@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - hospital-management/case-service/**
-
+      
 jobs:
   pre-commit-scans:
     runs-on: ubuntu-latest
