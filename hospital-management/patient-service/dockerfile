@@ -6,7 +6,7 @@ WORKDIR /app
 ARG jarName
 
 # Set environment variable from ARG
-ENV JAR_NAME=${jarName}
+ENV JAR_NAME=${jarName} 
 
 # Copy Jar from build context to /app directory in the image
 COPY target/${JAR_NAME}.jar ${JAR_NAME}.jar
