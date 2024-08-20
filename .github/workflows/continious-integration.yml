@@ -1,9 +1,10 @@
 name: CI/CD Workflow
 
-on:
-  push:
-#    branches:
-#      - main
+# on:
+#   push:
+#     branches:
+#       - main
+
 env: 
   DIRS: "api-gateway directory-service  patient-service case-service appointment-service"
 
