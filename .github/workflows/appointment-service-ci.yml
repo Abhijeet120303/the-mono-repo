@@ -29,35 +29,35 @@ jobs:
 
     - name: Run Unit Tests
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         mvn test
           
     - name: Perform Google Formatter Check
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         mvn com.spotify.fmt:fmt-maven-plugin:check
 
     - name: OSS scan
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         mvn ossindex:audit
       continue-on-error: true
 
     - name: OWASP scan
       if: false 
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         mvn org.owasp:dependency-check-maven:check
 
     - name: Build code and create docker images
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         mvn clean install docker:build -Dimage.registry=${{vars.DOCKER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
          
 
     - name: License finder
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         docker pull abhijeetnirphal/license-finder:latest
         docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
       continue-on-error: true
@@ -70,6 +70,6 @@ jobs:
 
     - name: Push docker images
       run: |
-        cd hospital-management/case-service
+        cd hospital-management/appointment-service
         CURRENT_FOLDER_NAME=$(basename $(pwd))
         docker push ${{vars.DOCKER_REGISTRY_USER}}/$CURRENT_FOLDER_NAME:$GITHUB_REF_NAME 
