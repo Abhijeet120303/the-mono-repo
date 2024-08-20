@@ -1,7 +1,7 @@
 name : base image build
 
-on:
-  push:
+# on:
+#  push:
 #    paths:
 #      - dev-sec-ops/base-images/**
 
