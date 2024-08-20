@@ -22,7 +22,6 @@ jobs:
   
     - name: GitLeaks Scan
       run: |
-        cd hospital-management/case-service
         ls -ltr
         docker pull abhijeetnirphal/gitleaks
         git fetch --unshallow
