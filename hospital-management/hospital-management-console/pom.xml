@@ -5,7 +5,7 @@
 	<groupId>org.dnyanyog</groupId>
 	<artifactId>hospital-management-console</artifactId>
 	<version>latest</version>
- 
+  
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
