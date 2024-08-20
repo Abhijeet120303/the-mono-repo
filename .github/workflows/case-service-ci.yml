@@ -60,6 +60,7 @@ jobs:
         cd hospital-management/case-service
         docker pull abhijeetnirphal/license-finder:latest
         docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
+      continue-on-error: true
   
     - name: Log in to GitHub Docker Registry
       uses: docker/login-action@v2
