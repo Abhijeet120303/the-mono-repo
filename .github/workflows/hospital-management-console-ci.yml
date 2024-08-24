@@ -1,0 +1,58 @@
+name: CI/CD Workflow For case service
+
+on:
+  push:
+    paths:
+      - hospital-management/hospital-management-console/**
+      
+jobs:
+  pre-commit-scans:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - name: Setup java
+      uses: actions/setup-java@v4
+      with:
+         distribution: 'temurin' 
+         java-version: '21'
+        
+    - name: Checkout code
+      uses: actions/checkout@v4
+  
+    - name: GitLeaks Scan
+      run: |
+        ls -ltr
+        docker pull abhijeetnirphal/gitleaks
+        git fetch --unshallow
+        docker run -v "$(pwd):/path" abhijeetnirphal/gitleaks     
+
+    - name: Run Unit Tests
+      run: |
+        cd hospital-management/hospital-management-console
+        # mvn test
+          
+    - name: Perform Google Formatter Check
+      run: |
+        cd hospital-management/hospital-management-console
+        mvn com.spotify.fmt:fmt-maven-plugin:check
+
+    - name: OSS scan
+      run: |
+        cd hospital-management/hospital-management-console
+        mvn ossindex:audit
+      continue-on-error: true
+
+    - name: OWASP scan
+      if: false 
+      run: |
+        cd hospital-management/hospital-management-console
+        mvn org.owasp:dependency-check-maven:check
+
+    - name: License finder
+      run: |
+        cd hospital-management/hospital-management-console
+        docker pull abhijeetnirphal/license-finder:latest
+        docker run -v "$(pwd):/scan" abhijeetnirphal/license-finder:latest
+      continue-on-error: true
+  

@@ -4,14 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.dnyanyog</groupId>
 	<artifactId>hospital-management-console</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
-	<properties>
+	<version>latest</version>
+    
+	<properties> 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<image.registry>dnyanyog.org</image.registry>
+		<image.tag>latest</image.tag>
 	</properties>
-	<dependencies>
+	<dependencies> 
 		<dependency>
-			<groupId>com.sun.mail</groupId>
+			<groupId>com.sun.mail</groupId> 
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
 		</dependency>
@@ -122,7 +126,6 @@
 					version, for example, 16 -->
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>com.spotify.fmt</groupId>
 				<artifactId>fmt-maven-plugin</artifactId>
@@ -130,12 +133,58 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>format</goal>
-							<!-- goal>check</goal-->
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
 
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.44.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<images>
+						<image>
+							<name>${image.registry}/${project.artifactId}:${image.tag}</name>
+							<build>
+								<dockerFile>${project.basedir}/dockerfile</dockerFile>
+								<args>
+									<jarName>${project.artifactId}-latest</jarName>
+								</args>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.ossindex.maven</groupId>
+				<artifactId>ossindex-maven-plugin</artifactId>
+				<configuration>
+					<reportFile>${project.build.directory}/audit-report.json</reportFile>
+					<!--fail>true</fail-->
+				</configuration>
+				<executions>
+					<execution>
+						<id>audit-dependencies</id>
+						<goals>
+							<goal>audit</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
