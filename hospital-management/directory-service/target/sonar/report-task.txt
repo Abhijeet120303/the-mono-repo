@@ -1,6 +1,0 @@
-projectKey=directory-service
-serverUrl=http://localhost:9000
-serverVersion=10.6.0.92116
-dashboardUrl=http://localhost:9000/dashboard?id=directory-service
-ceTaskId=4e38bcdd-3da1-4875-afe3-65b12b61c5aa
-ceTaskUrl=http://localhost:9000/api/ce/task?id=4e38bcdd-3da1-4875-afe3-65b12b61c5aa
